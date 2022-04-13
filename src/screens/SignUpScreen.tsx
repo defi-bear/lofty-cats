@@ -12,6 +12,7 @@ import Input from 'src/components/Input';
 import Validate from 'src/utils/Validate';
 import endpoints from 'src/constants/Endpoint';
 import { RootStackScreenProps } from 'src/types/Navigation';
+import Back from 'src/components/Back';
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +66,7 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
       });
       navigation.navigate('Home');
     }
-  }, [mutation?.data?.data, mutation.isSuccess, navigation]);
+  }, [mutation.isSuccess, navigation]);
 
   useEffect(() => {
     if (mutation.error) {
@@ -77,6 +78,10 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
       });
     }
   }, [mutation.error]);
+
+  const onLogIn = () => {
+    navigation.navigate('Home');
+  };
 
   const onSignUp = () => {
     if (!firstName) {
@@ -113,6 +118,7 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
 
   return (
     <View style={styles.container}>
+      <Back onBackPress={() => navigation.goBack()} />
       <Image source={SignupCats} style={styles.signupCats} />
       <View style={styles.main}>
         <Text style={styles.title}>Create Account</Text>
@@ -138,11 +144,18 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
           onChangeText={(text) => setPassword(text)}
           error={passwordError}
         />
-        <Button type="primary" styles={styles.signup} onPress={onSignUp}>
+        <Button
+          type="primary"
+          styles={styles.signup}
+          onPress={onSignUp}
+          loading={mutation.isLoading}
+        >
           Sign up
         </Button>
         <Separator />
-        <Button type="secondary">Log in</Button>
+        <Button type="secondary" onPress={onLogIn}>
+          Log in
+        </Button>
       </View>
     </View>
   );

@@ -1,9 +1,10 @@
-const baseUrl = 'http://catstagram.lofty.codes/api/';
+const baseUrl = 'http://catstagram.lofty.codes/';
 const endpoints = {
   // API,
-  users: `${baseUrl}users/`,
-  posts: `${baseUrl}posts`,
-  comments: `${baseUrl}comments`,
+  media: `${baseUrl}media/`,
+  users: `${baseUrl}api/users/`,
+  posts: `${baseUrl}api/posts/`,
+  comments: `${baseUrl}api/comments/`,
 };
 
 export default endpoints;

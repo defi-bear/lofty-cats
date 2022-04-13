@@ -9,10 +9,13 @@ import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 
 import { RootStackParamList } from 'src/types/Navigation';
-import HomeScreen from 'src/screens/HomeScreen';
+import LandingScreen from 'src/screens/LandingScreen';
 import ModalScreen from 'src/screens/ModalScreen';
 import NotFoundScreen from 'src/screens/NotFoundScreen';
 import SignUpScreen from 'src/screens/SignUpScreen';
+import HomeScreen from 'src/screens/HomeScreen';
+import PostDetailScreen from 'src/screens/PostDetailScreen';
+import AddPhotoScreen from 'src/screens/AddPhotoScreen';
 import LinkingConfiguration from './LinkingConfiguration';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -20,10 +23,25 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="Landing"
+        component={LandingScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="PostDetail"
+        component={PostDetailScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AddPhoto"
+        component={AddPhotoScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

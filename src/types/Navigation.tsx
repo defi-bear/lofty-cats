@@ -4,10 +4,18 @@
  */
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Post } from './Posts';
+
+type AddPhotoParams = {
+  refetch: () => void;
+};
 
 export type RootStackParamList = {
-  Home: undefined;
+  Landing: undefined;
   SignUp: undefined;
+  Home: undefined;
+  PostDetail: Post;
+  AddPhoto: AddPhotoParams;
   Modal: undefined;
   NotFound: undefined;
 };

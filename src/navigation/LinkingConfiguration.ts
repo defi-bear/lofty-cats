@@ -13,8 +13,11 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL('/')],
   config: {
     screens: {
-      Home: 'home',
+      Landing: 'landing',
       SignUp: 'signup',
+      Home: 'home',
+      PostDetail: 'postdetail',
+      AddPhoto: 'addphoto',
       Modal: 'modal',
       NotFound: '*',
     },

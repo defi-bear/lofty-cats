@@ -1,65 +1,75 @@
+import axios from 'axios';
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { ActivityIndicator, StyleSheet, FlatList, SafeAreaView } from 'react-native';
+import { useQuery } from 'react-query';
+import RenderPost from 'src/components/Post';
 
-import { Text, View } from 'src/components/Themed';
+import { View } from 'src/components/Themed';
 import { RootStackScreenProps } from 'src/types/Navigation';
-import WelcomeCats from 'src/assets/images/welcome_cats.png';
+import { primaryColor } from 'src/constants/Colors';
+import endpoints from 'src/constants/Endpoint';
+import { Post } from 'src/types/Posts';
 import Button from 'src/components/Button';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  main: {
-    width: '90%',
+  mainContainer: {
+    paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    textAlign: 'left',
+  columnWrapperStyle: {
+    justifyContent: 'space-between',
   },
-  description: {
-    fontSize: 16,
-    marginTop: 20,
-  },
-  welcomeCats: {
-    width: '90%',
-    resizeMode: 'contain',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-  login: {
-    marginTop: 50,
-  },
-  signup: {
-    marginTop: 20,
+  buttonContainer: {
+    marginTop: 10,
   },
 });
 
-export default function TabOneScreen({ navigation }: RootStackScreenProps<'Home'>) {
-  const onSignUp = () => {
-    navigation.navigate('SignUp');
+export default function HomeScreen({ navigation }: RootStackScreenProps<'Home'>) {
+  const { isLoading, data, refetch } = useQuery<Post[], Error>(
+    ['photos'],
+    (): Promise<Post[]> => axios.get(endpoints.posts).then((response) => response.data),
+  );
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color={primaryColor} />
+      </View>
+    );
+  }
+
+  const onPostClick = (item: Post) => {
+    navigation.navigate('PostDetail', item);
   };
+
+  const onAddPhoto = () => {
+    navigation.navigate('AddPhoto', { refetch });
+  };
+
   return (
     <View style={styles.container}>
-      <Image source={WelcomeCats} style={styles.welcomeCats} />
-      <View style={styles.main}>
-        <Text style={styles.title}>Cats Instagram</Text>
-        <Text style={styles.description}>
-          This is the instagram for cats aka Catstagram.
-        </Text>
-        <Button type="primary" styles={styles.login}>
-          Log In
-        </Button>
-        <Button type="secondary" styles={styles.signup} onPress={onSignUp}>
-          Sign Up
-        </Button>
-      </View>
+      <SafeAreaView>
+        <View style={styles.mainContainer}>
+          <FlatList<Post>
+            data={data}
+            renderItem={({ item }) => (
+              <RenderPost item={item} onPostClick={onPostClick} />
+            )}
+            keyExtractor={(item) => item.pk}
+            numColumns={2}
+            columnWrapperStyle={styles.columnWrapperStyle}
+          />
+          <View style={styles.buttonContainer}>
+            <Button type="primary" onPress={onAddPhoto}>
+              Add Your Photo
+            </Button>
+          </View>
+        </View>
+      </SafeAreaView>
     </View>
   );
 }
