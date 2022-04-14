@@ -1,3 +1,4 @@
+// Comment type
 export type Comment = {
   pk: string;
   text: string;
@@ -6,6 +7,7 @@ export type Comment = {
   timestamp_created: Date;
 };
 
+// Post type
 export type Post = {
   pk: string;
   name: string;

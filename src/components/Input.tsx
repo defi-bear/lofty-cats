@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * A customized TextField component.
+ */
 export default function Input({ ...props }: InputProps) {
   const color = useThemeColor({ light: undefined, dark: undefined }, 'text');
   return (

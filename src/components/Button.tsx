@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   },
 });
 
+/* Customized button component. */
 export default function Button({
   children,
   type,

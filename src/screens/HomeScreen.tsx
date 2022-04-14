@@ -29,10 +29,21 @@ const styles = StyleSheet.create({
 });
 
 export default function HomeScreen({ navigation }: RootStackScreenProps<'Home'>) {
+  // Getting the posts
   const { isLoading, data, refetch } = useQuery<Post[], Error>(
     ['photos'],
     (): Promise<Post[]> => axios.get(endpoints.posts).then((response) => response.data),
   );
+
+  // Post clicked
+  const onPostClick = (item: Post) => {
+    navigation.navigate('PostDetail', item);
+  };
+
+  // Add photo button clicked
+  const onAddPhoto = () => {
+    navigation.navigate('AddPhoto', { refetch });
+  };
 
   if (isLoading) {
     return (
@@ -41,14 +52,6 @@ export default function HomeScreen({ navigation }: RootStackScreenProps<'Home'>)
       </View>
     );
   }
-
-  const onPostClick = (item: Post) => {
-    navigation.navigate('PostDetail', item);
-  };
-
-  const onAddPhoto = () => {
-    navigation.navigate('AddPhoto', { refetch });
-  };
 
   return (
     <View style={styles.container}>

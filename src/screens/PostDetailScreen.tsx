@@ -64,15 +64,18 @@ export default function PostDetailScreen({
   const { pk, image, name } = route.params;
   const [commentText, setCommentText] = useState('');
 
+  // Get comments from the server
   const { data: comments, refetch } = useQuery<Comment[], Error>(
     ['comments'],
     (): Promise<Comment[]> =>
       axios.get(endpoints.comments).then((response) => response.data),
   );
+  // Add comment to the server
   const mutation = useMutation((data: CommentProps) =>
     axios.post(endpoints.comments, data),
   );
 
+  // Comment button clicked
   const onComment = () => {
     const data = {
       text: commentText,
@@ -81,6 +84,7 @@ export default function PostDetailScreen({
     mutation.mutate(data);
   };
 
+  // When comment uploaded successfully
   useEffect(() => {
     if (mutation.isSuccess) {
       Toast.show('Comment success', {

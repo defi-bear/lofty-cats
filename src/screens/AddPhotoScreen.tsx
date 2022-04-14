@@ -61,6 +61,7 @@ export default function AddPhotoScreen({
   const [selectedImage, setSelectedImage] = useState<string>('');
   const [title, setTitle] = useState('');
 
+  // Add photo to the server
   const mutation = useMutation((data: FormData) =>
     axios.post(endpoints.posts, data, {
       headers: {
@@ -70,6 +71,7 @@ export default function AddPhotoScreen({
     }),
   );
 
+  // useEffect when occurs photo successfully uploaded
   useEffect(() => {
     if (mutation.isSuccess) {
       Toast.show('Upload photo success', {
@@ -83,6 +85,7 @@ export default function AddPhotoScreen({
     }
   }, [mutation.isSuccess, route.params, navigation]);
 
+  // When upload photo button clicked. It's for selecting photo
   const openImagePickerAsync = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -97,6 +100,7 @@ export default function AddPhotoScreen({
     }
   };
 
+  // When post button clicked. It's for uploading photo to the server
   const onPost = () => {
     const formData = new FormData();
     if (!title) {

@@ -14,6 +14,12 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * It renders a back button that calls the onBackPress function when pressed
+ * @param  - `onBackPress` - a function that will be called
+ * when the back button is pressed.
+ * @returns A TouchableOpacity component with a Text component inside of it.
+ */
 export default function Back({ onBackPress }: { onBackPress: () => void }) {
   const theme = useColorScheme();
 

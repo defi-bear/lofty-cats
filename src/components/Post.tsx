@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * RenderPost is a function that takes in an item and an onPostClick function and
+ * returns a TouchableOpacity component that contains an Image and a Text component
+ */
 function RenderPost({
   item,
   onPostClick,
@@ -52,6 +56,8 @@ function RenderPost({
   );
 }
 
+/* A React.memo() function that is used to optimize the performance of a
+functional component. */
 const MemoizedPost = React.memo(
   RenderPost,
   (prevProps, nextProps) =>

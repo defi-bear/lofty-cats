@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * A separator that will be used in signup page and login page
+ * @returns A component that renders a view with a text and two lines.
+ */
 export default function Separator() {
   const gray = useThemeColor({ light: undefined, dark: undefined }, 'gray');
   const lineColor = [styles.line, { backgroundColor: gray }];

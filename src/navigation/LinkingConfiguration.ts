@@ -18,7 +18,6 @@ const linking: LinkingOptions<RootStackParamList> = {
       Home: 'home',
       PostDetail: 'postdetail',
       AddPhoto: 'addphoto',
-      Modal: 'modal',
       NotFound: '*',
     },
   },

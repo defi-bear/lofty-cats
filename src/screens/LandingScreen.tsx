@@ -42,10 +42,12 @@ const styles = StyleSheet.create({
 });
 
 export default function LandingScreen({ navigation }: RootStackScreenProps<'Landing'>) {
+  // login button clicked
   const onLogIn = () => {
     navigation.navigate('Home');
   };
 
+  // signup button clicked
   const onSignUp = () => {
     navigation.navigate('SignUp');
   };

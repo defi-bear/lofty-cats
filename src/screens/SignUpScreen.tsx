@@ -56,6 +56,7 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
 
   const mutation = useMutation((data: SignUpProps) => axios.post(endpoints.users, data));
 
+  // Signed up successfully
   useEffect(() => {
     if (mutation.isSuccess) {
       Toast.show('Sign up success', {
@@ -68,6 +69,7 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
     }
   }, [mutation.isSuccess, navigation]);
 
+  // Sign up failed
   useEffect(() => {
     if (mutation.error) {
       Toast.show('Sign up failed', {
@@ -79,10 +81,12 @@ export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignU
     }
   }, [mutation.error]);
 
+  // LogIn button clicked
   const onLogIn = () => {
     navigation.navigate('Home');
   };
 
+  // when sign up button clicked
   const onSignUp = () => {
     if (!firstName) {
       setFirstNameError('Full name is required');

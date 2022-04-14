@@ -10,7 +10,6 @@ import { ColorSchemeName } from 'react-native';
 
 import { RootStackParamList } from 'src/types/Navigation';
 import LandingScreen from 'src/screens/LandingScreen';
-import ModalScreen from 'src/screens/ModalScreen';
 import NotFoundScreen from 'src/screens/NotFoundScreen';
 import SignUpScreen from 'src/screens/SignUpScreen';
 import HomeScreen from 'src/screens/HomeScreen';
@@ -20,6 +19,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+// A root stack navigator is used for displaying screens
 function RootNavigator() {
   return (
     <Stack.Navigator>
@@ -49,9 +49,6 @@ function RootNavigator() {
         component={NotFoundScreen}
         options={{ title: 'Oops!' }}
       />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
     </Stack.Navigator>
   );
 }

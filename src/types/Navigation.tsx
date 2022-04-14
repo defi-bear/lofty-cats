@@ -16,14 +16,8 @@ export type RootStackParamList = {
   Home: undefined;
   PostDetail: Post;
   AddPhoto: AddPhotoParams;
-  Modal: undefined;
   NotFound: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
-
-export type RootTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
-};

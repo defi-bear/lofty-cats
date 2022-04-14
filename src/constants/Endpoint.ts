@@ -1,4 +1,7 @@
+// A base url endpoint
 const baseUrl = 'http://catstagram.lofty.codes/';
+
+// api endpoints
 const endpoints = {
   // API,
   media: `${baseUrl}media/`,

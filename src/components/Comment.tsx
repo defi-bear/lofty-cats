@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * We're defining a function called RenderComment that takes in an object called item,
+ * and returns a component that contains a Text component
+ * @param  - { item: Comment }
+ * @returns A component that renders a comment.
+ */
 function RenderComment({ item }: { item: Comment }) {
   return (
     <View style={styles.container}>
